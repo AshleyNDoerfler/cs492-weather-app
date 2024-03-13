@@ -24,11 +24,23 @@ class MyApp extends StatelessWidget {
         valueListenable: _notifier,
         builder: (_, mode, __) {
           return MaterialApp(
-            title: 'CS 492 Weather App',
-            theme: ThemeData.light(),
-            darkTheme: ThemeData.dark(),
+            title: 'The Best Weather App Ever',
+            theme: ThemeData(
+              useMaterial3: true,
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: const Color.fromARGB(255, 114, 255, 119),
+                brightness: Brightness.light,
+                ),
+            ),
+            darkTheme: ThemeData(
+              useMaterial3: true,
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: const Color.fromARGB(255, 114, 255, 119),
+                brightness: Brightness.dark,
+              ),
+            ),
             themeMode: mode,
-            home: MyHomePage(title: "CS492 Weather App", notifier: _notifier),
+            home: MyHomePage(title: "What's Up With That Weather?", notifier: _notifier),
           );
         });
   }
@@ -37,7 +49,10 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final String title;
   final ValueNotifier<ThemeMode> notifier;
-  const MyHomePage({super.key, required this.title, required this.notifier});
+  MyHomePage({super.key, required this.title, required this.notifier}) {
+    // TODO: implement MyHomePage
+    // Remove the throw statement from the const constructor
+  }
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
