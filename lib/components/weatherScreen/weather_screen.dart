@@ -48,9 +48,157 @@ class ForecastWidget extends StatelessWidget {
     return Column(
       children: [
         LocationTextWidget(location: location),
-        TemperatureWidget(forecasts: forecasts),
-        DescriptionWidget(forecasts: forecasts)
+        DescriptionWidget(forecasts: forecasts),
+        IconWidget(forecasts: forecasts),
+        TemperatureWidget(forecasts: forecasts)
+        
       ],
+    );
+  }
+}
+
+class IconWidget extends StatelessWidget {
+  const IconWidget({
+    super.key,
+    required this.forecasts,
+  });
+
+  final List<WeatherForecast> forecasts;
+
+  @override
+  Widget build(BuildContext context) {
+    if (forecasts.elementAt(0).shortForecast.toLowerCase().contains("sunny")) {
+      return const SunnyIcon();
+    } else if (forecasts.elementAt(0).shortForecast.toLowerCase().contains("cloud")) {
+      return const CloudyIcon();
+    }else if (forecasts.elementAt(0).shortForecast.toLowerCase().contains("rain")) {
+      return const RainyIcon();
+    } else if (forecasts.elementAt(0).shortForecast.toLowerCase().contains("snow")) {
+      return const SnowIcon();
+    } else if (forecasts.elementAt(0).shortForecast.toLowerCase().contains("thunder")) {
+      return const ThunderIcon();
+    } else {
+      return const OtherIcon();
+    }
+  }
+}
+
+class SunnyIcon extends StatelessWidget {
+  const SunnyIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 100,
+      width: 100,
+      child: Center(
+        child: Image(
+          image: AssetImage('assets/sunny.PNG'),
+          width: 200,
+          height:200)
+      ),
+    );
+  }
+}
+
+class CloudyIcon extends StatelessWidget {
+  const CloudyIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 100,
+      width: 100,
+      child: Center(
+        child: Image(
+          image: AssetImage('assets/cloudy.PNG'),
+          width: 200,
+          height:200)
+      ),
+    );
+  }
+}
+
+class RainyIcon extends StatelessWidget {
+  const RainyIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 100,
+      width: 100,
+      child: Center(
+        child: Image(
+          image: AssetImage('assets/rainy.PNG'),
+          width: 200,
+          height:200)
+      ),
+    );
+  }
+}
+
+class SnowIcon extends StatelessWidget {
+  const SnowIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 100,
+      width: 100,
+      child: Center(
+        child: Image(
+          image: AssetImage('assets/snowy.PNG'),
+          width: 200,
+          height:200)
+      ),
+    );
+  }
+}
+
+class ThunderIcon extends StatelessWidget {
+  const ThunderIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 100,
+      width: 100,
+      child: Center(
+        child: Image(
+          image: AssetImage('assets/thunder.PNG'),
+          width: 200,
+          height:200)
+      ),
+    );
+  }
+}
+
+class OtherIcon extends StatelessWidget {
+  const OtherIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 100,
+      width: 100,
+      child: Center(
+        child: Image(
+          image: AssetImage('assets/other.PNG'),
+          width: 200,
+          height:200)
+      ),
     );
   }
 }
@@ -87,10 +235,12 @@ class TemperatureWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 500,
-      height: 60,
+      height: 90,
       child: Center(
-        child: Text('${forecasts.elementAt(0).temperature}º',
-            style: Theme.of(context).textTheme.displayLarge),
+        child: Center(
+          child: Text('${forecasts.elementAt(0).temperature}º',
+              style: Theme.of(context).textTheme.displayLarge),
+        ),
       ),
     );
   }
@@ -110,8 +260,11 @@ class LocationTextWidget extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: SizedBox(
         width: 500,
-        child: Text("${location.city}, ${location.state}, ${location.zip}",
-            style: Theme.of(context).textTheme.headlineSmall),
+        height: 50,
+        child: Center(
+          child: Text("${location.city}, ${location.state}, ${location.zip}",
+              style: Theme.of(context).textTheme.headlineSmall),
+        ),
       ),
     );
   }
