@@ -90,14 +90,20 @@ class SunnyIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 100,
-      width: 100,
+    return SizedBox(
+      height: 250,
+      width: 250,
       child: Center(
-        child: Image(
-          image: AssetImage('assets/sunny.PNG'),
-          width: 200,
-          height:200)
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.orange, width: 4),
+          ),
+          child: const Image(
+            image: AssetImage('assets/sunny.PNG'),
+            width: 250,
+            height: 250,
+          ),
+        ),
       ),
     );
   }
@@ -110,14 +116,20 @@ class CloudyIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 100,
-      width: 100,
+    return SizedBox(
+      height: 250,
+      width: 250,
       child: Center(
-        child: Image(
-          image: AssetImage('assets/cloudy.PNG'),
-          width: 200,
-          height:200)
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.orange, width: 4),
+          ),
+          child: const Image(
+            image: AssetImage('assets/cloudy.PNG'),
+            width: 250,
+            height: 250,
+          ),
+        ),
       ),
     );
   }
@@ -130,14 +142,20 @@ class RainyIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 100,
-      width: 100,
+    return SizedBox(
+      height: 250,
+      width: 250,
       child: Center(
-        child: Image(
-          image: AssetImage('assets/rainy.PNG'),
-          width: 200,
-          height:200)
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.orange, width: 4),
+          ),
+          child: const Image(
+            image: AssetImage('assets/rain.PNG'),
+            width: 250,
+            height: 250,
+          ),
+        ),
       ),
     );
   }
@@ -150,14 +168,20 @@ class SnowIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 100,
-      width: 100,
+    return SizedBox(
+      height: 250,
+      width: 250,
       child: Center(
-        child: Image(
-          image: AssetImage('assets/snowy.PNG'),
-          width: 200,
-          height:200)
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.orange, width: 4),
+          ),
+          child: const Image(
+            image: AssetImage('assets/snow.PNG'),
+            width: 250,
+            height: 250,
+          ),
+        ),
       ),
     );
   }
@@ -170,14 +194,20 @@ class ThunderIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 100,
-      width: 100,
+    return SizedBox(
+      height: 250,
+      width: 250,
       child: Center(
-        child: Image(
-          image: AssetImage('assets/thunder.PNG'),
-          width: 200,
-          height:200)
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.orange, width: 4),
+          ),
+          child: const Image(
+            image: AssetImage('assets/thunder.PNG'),
+            width: 250,
+            height: 250,
+          ),
+        ),
       ),
     );
   }
@@ -214,11 +244,12 @@ class DescriptionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 25,
+      height: 50,
       width: 500,
       child: Center(
           child: Text(forecasts.elementAt(0).shortForecast,
-              style: Theme.of(context).textTheme.bodyMedium)),
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+      )
     );
   }
 }
@@ -260,7 +291,7 @@ class LocationTextWidget extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: SizedBox(
         width: 500,
-        height: 50,
+        height: 40,
         child: Center(
           child: Text("${location.city}, ${location.state}, ${location.zip}",
               style: Theme.of(context).textTheme.headlineSmall),
