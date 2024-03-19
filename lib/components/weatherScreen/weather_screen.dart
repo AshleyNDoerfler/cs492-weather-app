@@ -55,7 +55,7 @@ class ForecastWidget extends StatelessWidget {
           TemperatureWidget(forecasts: forecasts),
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("Hourly Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            child: Text("Hourly Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'CustomFont')),
           ),
           SizedBox(
             height: 100, // Adjust the height as needed
@@ -69,7 +69,7 @@ class ForecastWidget extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("Twice Daily Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            child: Text("Twice Daily Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'CustomFont')),
           ),
           SizedBox(
             height: 100, // Adjust the height as needed
@@ -284,7 +284,7 @@ class DescriptionWidget extends StatelessWidget {
       width: 500,
       child: Center(
           child: Text(forecasts.elementAt(0).shortForecast,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'CustomFont')),
       )
     );
   }
@@ -306,7 +306,7 @@ class TemperatureWidget extends StatelessWidget {
       child: Center(
         child: Center(
           child: Text('${forecasts.elementAt(0).temperature}º',
-              style: Theme.of(context).textTheme.displayLarge),
+              style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, fontFamily: 'CustomFont')),
         ),
       ),
     );
@@ -330,7 +330,7 @@ class LocationTextWidget extends StatelessWidget {
         height: 40,
         child: Center(
           child: Text("${location.city}, ${location.state}, ${location.zip}",
-              style: Theme.of(context).textTheme.headlineSmall),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'CustomFont')),
         ),
       ),
     );
@@ -354,7 +354,7 @@ class LocationWidget extends StatelessWidget {
           children: [
             const Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text("Requires a location to begin", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              child: Text("Requires a location to begin", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'CustomFont')),
             ),
             Location(
                 setLocation: widget.setLocation,
@@ -381,15 +381,15 @@ class ForecastListItem extends StatelessWidget {
         children: [
           Text(
             formattedDate,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'CustomFont'),
           ),
           Text(
             forecast.shortForecast,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'CustomFont'),
           ),
           Text(
             '${forecast.temperature}º',
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16, fontFamily: 'CustomFont'),
           ),
           // Add other forecast information here if needed
         ],
@@ -414,15 +414,15 @@ class TwiceDailyForecastItem extends StatelessWidget {
         children: [
           Text(
             formattedDate,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'CustomFont'),
           ),
           Text(
             forecast.shortForecast,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'CustomFont'),
           ),
           Text(
             '${forecast.temperature}º',
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16, fontFamily: 'CustomFont'),
           ),
         ],
       ),
