@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             themeMode: mode,
-            home: MyHomePage(title: "What's Up With That Weather?", notifier: _notifier),
+            home: MyHomePage(title: "Weather? I Hardly Know Er!", notifier: _notifier),
           );
         });
   }

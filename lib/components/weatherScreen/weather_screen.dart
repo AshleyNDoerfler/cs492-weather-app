@@ -54,10 +54,10 @@ class ForecastWidget extends StatelessWidget {
           TemperatureWidget(forecasts: forecasts),
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text("Hourly Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            child: Text("Hourly Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Raleway')),
           ),
           SizedBox(
-            height: 200, // Adjust the height as needed
+            height: 100, // Adjust the height as needed
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: forecasts.length - 1, // Exclude the current forecast
@@ -66,6 +66,20 @@ class ForecastWidget extends StatelessWidget {
               },
             ),
           ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text("Twice Daily Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Raleway')),
+          ),
+          SizedBox(
+            height: 100, // Adjust the height as needed
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: forecasts.length ~/ 2, // Display half of the forecasts
+              itemBuilder: (BuildContext context, int index) {
+                return TwiceDailyForecastItem(forecast: forecasts[index * 2]);
+              },
+            ),
+          )
         ],
       ),
     );
@@ -269,7 +283,7 @@ class DescriptionWidget extends StatelessWidget {
       width: 500,
       child: Center(
           child: Text(forecasts.elementAt(0).shortForecast,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Raleway')),
       )
     );
   }
@@ -332,19 +346,21 @@ class LocationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 400,
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text("Requires a location to begin"),
-          ),
-          Location(
-              setLocation: widget.setLocation,
-              getLocation: widget.getLocation),
-        ],
-      ),
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: 400,
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Requires a location to begin", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Raleway')),
+            ),
+            Location(
+                setLocation: widget.setLocation,
+                getLocation: widget.getLocation),
+          ],
+        ),
+      )
     );
   }
 }
@@ -361,18 +377,44 @@ class ForecastListItem extends StatelessWidget {
       child: Column(
         children: [
           // Text(
-          //   '${forecast.name}:00',
+          //   '${forecast.time}:00',
           //   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           // ),
           Text(
             forecast.shortForecast,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
           ),
           Text(
             '${forecast.temperature}º',
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16, fontFamily: 'Raleway'),
           ),
           // Add other forecast information here if needed
+        ],
+      ),
+    );
+  }
+}
+
+class TwiceDailyForecastItem extends StatelessWidget {
+  final WeatherForecast forecast;
+
+  const TwiceDailyForecastItem({Key? key, required this.forecast})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Text(
+            forecast.shortForecast,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+          ),
+          Text(
+            '${forecast.temperature}º',
+            style: const TextStyle(fontSize: 16, fontFamily: 'Raleway'),
+          ),
         ],
       ),
     );
