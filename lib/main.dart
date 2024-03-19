@@ -19,31 +19,38 @@ class MyApp extends StatelessWidget {
   final ValueNotifier<ThemeMode> _notifier = ValueNotifier(ThemeMode.light);
 
   @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-        valueListenable: _notifier,
-        builder: (_, mode, __) {
-          return MaterialApp(
-            title: 'The Best Weather App Ever',
-            theme: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color.fromARGB(255, 114, 255, 119),
-                brightness: Brightness.light,
-                ),
-            ),
-            darkTheme: ThemeData(
-              useMaterial3: true,
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color.fromARGB(255, 114, 255, 119),
-                brightness: Brightness.dark,
-              ),
-            ),
-            themeMode: mode,
-            home: MyHomePage(title: "Weather? I Hardly Know Er!", notifier: _notifier),
-          );
-        });
-  }
+Widget build(BuildContext context) {
+  return ValueListenableBuilder<ThemeMode>(
+    valueListenable: _notifier,
+    builder: (_, mode, __) {
+      return MaterialApp(
+        title: 'The Best Weather App Ever',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 114, 255, 119),
+            brightness: Brightness.light,
+          ),
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(fontFamily: 'CustomFont', fontSize: 16),
+          ),
+        ),
+        darkTheme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 114, 255, 119),
+            brightness: Brightness.dark,
+          ),
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(fontFamily: 'CustomFont', fontSize: 16),
+          ),
+        ),
+        themeMode: mode,
+        home: MyHomePage(title: "Weather? I Hardly Know Er!", notifier: _notifier),
+      );
+    },
+  );
+}
 }
 
 class MyHomePage extends StatefulWidget {

@@ -10,6 +10,7 @@ class WeatherForecast {
   final String windSpeed;
   final String windDirection;
   final String shortForecast;
+  final String startTime;
   final String detailedForecast;
 
   const WeatherForecast({
@@ -19,6 +20,7 @@ class WeatherForecast {
     required this.windSpeed,
     required this.windDirection,
     required this.shortForecast,
+    required this.startTime,
     required this.detailedForecast,
   });
 
@@ -31,6 +33,7 @@ class WeatherForecast {
         'windSpeed': String windSpeed,
         'windDirection': String windDirection,
         'shortForecast': String shortForecast,
+        'startTime': String startTime,
         'detailedForecast': String detailedForecast,
       } =>
         WeatherForecast(
@@ -40,6 +43,7 @@ class WeatherForecast {
           windSpeed: windSpeed,
           windDirection: windDirection,
           shortForecast: shortForecast,
+          startTime: startTime,
           detailedForecast: detailedForecast,
         ),
       _ => throw const FormatException('Failed to load Weather Forecast.'),

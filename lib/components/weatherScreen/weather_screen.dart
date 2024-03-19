@@ -2,6 +2,7 @@ import 'package:cs492_weather_app/models/weather_forecast.dart';
 import '../../models/user_location.dart';
 import 'package:flutter/material.dart';
 import '../location/location.dart';
+import 'package:intl/intl.dart';
 
 class WeatherScreen extends StatefulWidget {
   final Function getLocation;
@@ -372,14 +373,16 @@ class ForecastListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context,) {
+    DateTime dateTime = DateTime.parse(forecast.startTime);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          // Text(
-          //   '${forecast.time}:00',
-          //   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          // ),
+          Text(
+            formattedDate,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
           Text(
             forecast.shortForecast,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -403,10 +406,16 @@ class TwiceDailyForecastItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime dateTime = DateTime.parse(forecast.startTime);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
+          Text(
+            formattedDate,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
           Text(
             forecast.shortForecast,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
