@@ -45,14 +45,29 @@ class ForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LocationTextWidget(location: location),
-        DescriptionWidget(forecasts: forecasts),
-        IconWidget(forecasts: forecasts),
-        TemperatureWidget(forecasts: forecasts)
-        
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          LocationTextWidget(location: location),
+          DescriptionWidget(forecasts: forecasts),
+          IconWidget(forecasts: forecasts),
+          TemperatureWidget(forecasts: forecasts),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text("Hourly Forecast", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
+          SizedBox(
+            height: 200, // Adjust the height as needed
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: forecasts.length - 1, // Exclude the current forecast
+              itemBuilder: (BuildContext context, int index) {
+                return ForecastListItem(forecast: forecasts[index + 1]);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -91,8 +106,8 @@ class SunnyIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
-      width: 250,
+      height: 400,
+      width: 400,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -100,8 +115,8 @@ class SunnyIcon extends StatelessWidget {
           ),
           child: const Image(
             image: AssetImage('assets/sunny.PNG'),
-            width: 250,
-            height: 250,
+            width: 400,
+            height: 400,
           ),
         ),
       ),
@@ -115,10 +130,10 @@ class CloudyIcon extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
-      width: 250,
+      height: 400,
+      width: 400,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -126,8 +141,8 @@ class CloudyIcon extends StatelessWidget {
           ),
           child: const Image(
             image: AssetImage('assets/cloudy.PNG'),
-            width: 250,
-            height: 250,
+            width: 400,
+            height: 400,
           ),
         ),
       ),
@@ -141,10 +156,10 @@ class RainyIcon extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
-      width: 250,
+      height: 400,
+      width: 400,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -152,8 +167,8 @@ class RainyIcon extends StatelessWidget {
           ),
           child: const Image(
             image: AssetImage('assets/rain.PNG'),
-            width: 250,
-            height: 250,
+            width: 400,
+            height: 400,
           ),
         ),
       ),
@@ -167,10 +182,10 @@ class SnowIcon extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
-      width: 250,
+      height: 400,
+      width: 400,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -178,8 +193,8 @@ class SnowIcon extends StatelessWidget {
           ),
           child: const Image(
             image: AssetImage('assets/snow.PNG'),
-            width: 250,
-            height: 250,
+            width: 400,
+            height: 400,
           ),
         ),
       ),
@@ -195,8 +210,8 @@ class ThunderIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 250,
-      width: 250,
+      height: 400,
+      width: 400,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -204,8 +219,8 @@ class ThunderIcon extends StatelessWidget {
           ),
           child: const Image(
             image: AssetImage('assets/thunder.PNG'),
-            width: 250,
-            height: 250,
+            width: 400,
+            height: 400,
           ),
         ),
       ),
@@ -220,14 +235,20 @@ class OtherIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 100,
-      width: 100,
+    return SizedBox(
+      height: 400,
+      width: 400,
       child: Center(
-        child: Image(
-          image: AssetImage('assets/other.PNG'),
-          width: 200,
-          height:200)
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.orange, width: 4),
+          ),
+          child: const Image(
+            image: AssetImage('assets/other.PNG'),
+            width: 400,
+            height: 400,
+          ),
+        ),
       ),
     );
   }
@@ -322,6 +343,36 @@ class LocationWidget extends StatelessWidget {
           Location(
               setLocation: widget.setLocation,
               getLocation: widget.getLocation),
+        ],
+      ),
+    );
+  }
+}
+
+class ForecastListItem extends StatelessWidget {
+  final WeatherForecast forecast;
+
+  const ForecastListItem({Key? key, required this.forecast}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context,) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          // Text(
+          //   '${forecast.name}:00',
+          //   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          // ),
+          Text(
+            forecast.shortForecast,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            '${forecast.temperature}º',
+            style: const TextStyle(fontSize: 16),
+          ),
+          // Add other forecast information here if needed
         ],
       ),
     );
