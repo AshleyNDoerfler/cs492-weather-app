@@ -61,12 +61,12 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  fonts:
-    - family:  Raleway
-      fonts:
-        - asset: fonts/Raleway-VariableFont_wght.ttf
-        - asset: fonts/Raleway-Italic-VariableFont_wght.ttf
-          style: italic
+  # fonts:
+  #   - family:  Raleway
+  #     fonts:
+  #       - asset: fonts/Raleway-VariableFont_wght.ttf
+  #       - asset: fonts/Raleway-Italic-VariableFont_wght.ttf
+  #         style: italic
 
   # To add assets to your application, add an assets section, like this:
   # assets:
